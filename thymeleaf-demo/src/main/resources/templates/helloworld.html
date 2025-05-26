@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thymeleaf</title>
+</head>
+<body>
+    Student Name: <span th:text="${param.studentName}"></span><br>
+    <!-- This is used to access request parameters — that is, values passed via the URL query string like this -->
+    <!-- http://localhost:8080/helloworld?studentName=John -->
+    <!-- In that case:
+        •	studentName is a request parameter
+        •	${param.studentName} fetches its value -->
+</body>
+</html>
