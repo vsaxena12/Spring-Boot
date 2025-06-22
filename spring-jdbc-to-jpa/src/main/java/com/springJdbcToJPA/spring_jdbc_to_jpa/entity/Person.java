@@ -1,7 +1,10 @@
 package com.springJdbcToJPA.spring_jdbc_to_jpa.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
+@Component
 public class Person {
     private int id;
     private String namedata;
