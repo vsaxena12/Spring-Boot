@@ -27,10 +27,9 @@ public class SpringJdbcToJpaApplication {
 		return runner -> {
 			System.out.println(personDAO.findAll());
 			System.out.println(personDAO.findById(1001));
-			System.out.println(personDAO.deleteById(1006));
-			System.out.println(personDAO.insert(new Person(1008, "Var", new Timestamp(System.currentTimeMillis()))));
-			System.out.println(personDAO.update(new Person(1008, "Varun", new Timestamp(System.currentTimeMillis()))));
-
+			personDAO.deleteById(1);
+			System.out.println(personDAO.insert(new Person("Var")));
+			personDAO.update(1, "Varun Saxena");
 		};
 	}
 

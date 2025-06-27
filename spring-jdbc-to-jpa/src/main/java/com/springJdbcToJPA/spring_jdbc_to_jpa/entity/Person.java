@@ -1,24 +1,51 @@
 package com.springJdbcToJPA.spring_jdbc_to_jpa.entity;
 
-import org.springframework.stereotype.Component;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicInsert;
 
 import java.sql.Timestamp;
 
-@Component
+@Entity
+@DynamicInsert
+@NamedQuery(name="find_all_persons", query="select p from Person p")
+@Table(name="person")
 public class Person {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "person_seq")
+    @SequenceGenerator(name = "person_seq", sequenceName = "person_seq", allocationSize = 1)
+    @Column(name = "ID")
     private int id;
-    private String namedata;
-    private Timestamp timestamp;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @CreationTimestamp
+    @Column(name = "DATE_TIME", insertable = false, updatable = false)
+    private Timestamp timestamp; //Fix this - timestamp is null
 
     public Person() {
 
     }
 
-    public Person(int id, String name, Timestamp timestamp) {
-        this.id = id;
-        this.namedata = name;
-        this.timestamp = timestamp;
+    public Person(String name) {
+        super();
+        this.name = name;
     }
+
+//    public Person(int id, String name) {
+//        super();
+//        this.id = id;
+//        this.name = name;
+//    }
 
     public int getId() {
         return id;
@@ -29,11 +56,11 @@ public class Person {
     }
 
     public String getName() {
-        return namedata;
+        return name;
     }
 
     public void setName(String name) {
-        this.namedata = name;
+        this.name = name;
     }
 
     public Timestamp getTimestamp() {
@@ -48,7 +75,7 @@ public class Person {
     public String toString() {
         return "Person{" +
                 "id=" + id +
-                ", name='" + namedata + '\'' +
+                ", name='" + name + '\'' +
                 ", timestamp=" + timestamp +
                 '}';
     }

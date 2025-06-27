@@ -1,4 +1,4 @@
-create table Person (
+create table if not exists Person (
     ID INTEGER NOT NULL,
     NAME VARCHAR(255) NOT NULL,
     DATE_TIME TIMESTAMP DEFAULT CURRENT_TIMESTAMP
